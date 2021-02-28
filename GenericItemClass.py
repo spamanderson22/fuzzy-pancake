@@ -1,7 +1,7 @@
 class GenericItem:
 	numTotalAffixes
 	numTotalGoodAffixes
-	num thresholdValue
+	numThresholdValue
 
 	itemPos
 
