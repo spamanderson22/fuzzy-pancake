@@ -7,4 +7,3 @@ class GenericItem:
 
 	def __init__(self, xPos, yPos):
 		self.itemPos = [xPos,yPos]
-		numTotalAffixes = 1
