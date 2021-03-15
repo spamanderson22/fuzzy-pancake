@@ -1,45 +1,37 @@
 from cgenericitem import GenericItem
 
-class MCJewel(GenericItem):
+class ChaosMedJewel(GenericItem):
 	
 	#keyRing for RegEx needle and value for comparison with the threshold. Stores data as {Key:[Needle,Value]} 
 	#Key - name of the affix
 	#needle - RegEx string
 	#Value - The size of the total affix, initialized to 0
 	
-	def __init__(self, xPos, yPos, desiredAffixCode):
-		GenericItem.__init__(self,xPos, yPos)
+	def __init__(self):
+		GenericItem.__init__(self)
 
-		self.itemLabel = "Chaos Cluster Jewel"
+		self.itemLabel = "Chaos Medium Cluster Jewel"
 		self.affixSectionNum = 4
+		self.maxAffixes = 4
 	
 		#Notables
 		#Wicked Pall
 		self.desirableAffixesKeyring = {
-			"Wicked Pall": {self.NEEDLE:"Wicked Pall",
+			"Wicked Pall": {self.NEEDLE:"Pall",
 							self.VALUE:0,
 							self.THRESHOLD:1},
-			"Exposure Therapy": {self.NEEDLE:"Exposure Therapy",
+			"Exposure Therapy": {self.NEEDLE:"Therapy",
 							self.VALUE:0,
 							self.THRESHOLD:1},
-			"Unwaveringly Evil": {self.NEEDLE:"Unwaveringly Evil",
+			"Unwaveringly Evil": {self.NEEDLE:"Evil",
 							self.VALUE:0,
 							self.THRESHOLD:1},
-			"Student of Decay": {self.NEEDLE:"Student of Decay",
+			"Student of Decay": {self.NEEDLE:"Decay",
 							self.VALUE:0,
 							self.THRESHOLD:1},
 		}
 		self.affixLabelList = self.desirableAffixesKeyring.keys()
 
-		self.initKeyRing(desiredAffixCode)
-
-	#Override parent method
-	def initKeyRing(self,affixCode):
-		counter = 0
-		for possibleAffix in self.affixLabelList:
-			if(affixCode & (1 << counter)):
-				self.keyRing.update({possibleAffix:self.desirableAffixesKeyring[possibleAffix]})
-			counter += 1
 """
 		if(affixCode & (1 << 0)):
 			self.keyRing.update({self.affixLabelList[0]:self.desirableAffixesKeyring[self.affixLabelList[0]]})
@@ -70,10 +62,17 @@ Added Small Passive Skills also grant: +5% to Fire Resistance
 Place into an allocated Small, Medium or Large Jewel Socket on the Passive Skill Tree. Added passives do not interact with jewel radiuses. Right click to remove from the Socket.
 """
 
-testClass = MCJewel(1,1,9)
-testClass.updateItem(testItemString)
-#print(testClass.keyRing)
-#print(testClass.keyRing[testClass.notableUEKey][0])
-#testClass.countGoodAffixes()
-#print(testClass.numTotalGoodAffixes)
-testClass.getAffixLabels()
+"""
+testItem = ChaosMedJewel()
+
+testItem.updateItem(testItemString)
+
+testItem.initKeyRing(15)
+print(testItem.keyRing)
+print(testItem.getItemRarity())
+print(testItem.countGoodAffixes())
+print(testItem.countAffixes())
+testItem.getAffixLabels()
+print(testItem.affixLabelList)
+print(testItem.keyRing.keys())
+"""
